@@ -1,0 +1,14 @@
+# Cargo configuration for Chert smart contracts workspace
+# This ensures all contracts are built for WebAssembly by default
+
+[build]
+# Default target for all contracts
+target = "wasm32-unknown-unknown"
+
+[target.wasm32-unknown-unknown]
+# Optimize for size in WASM builds
+rustflags = [
+    "-C", "link-arg=-zstack-size=65536",  # 64KB stack size
+    "-C", "opt-level=z",                   # Optimize for size
+]
+runner = "./scripts/wasm32-test-runner.sh"

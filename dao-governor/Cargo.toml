@@ -1,0 +1,25 @@
+[package]
+name = "dao-governor-contract"
+version = "0.1.0"
+edition = "2024"
+authors = ["Silica Team"]
+license = "MIT"
+description = "Decentralized Autonomous Organization governance contract for proposal voting and execution"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+silica-contract-sdk = { workspace = true }
+serde = { workspace = true }
+postcard = { workspace = true }
+blake3 = { workspace = true }
+hex = { workspace = true }
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
+overflow-checks = true
